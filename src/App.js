@@ -169,7 +169,7 @@ const App = () => {
         ...prev,
         receiptProcessing: false,
         receiptAnalysis: result,
-        groceryCO2: result.total_emissions?.toFixed(2) || "",
+        groceryCO2: result.totalemissions?.toFixed(2) || "",
         groceryPeriod: "monthly", // Assuming receipts are typically monthly
       }));
     } catch (error) {

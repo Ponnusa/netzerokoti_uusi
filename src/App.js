@@ -150,16 +150,14 @@ const App = () => {
     }));
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("receipt", file);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('fileType', file.type.includes('pdf') ? 'pdf' : 'image');
 
-      const response = await fetch(
-        "https://ecoreceiptbackend-production.up.railway.app/api/process-receipt-ai",
-        {
-          method: "POST",
-          body: formDataToSend,
-        }
-      );
+      const response = await fetch("https://ecoreceiptbackend-production.up.railway.app/api/process-receipt-ai", {
+        method: 'POST',
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error(`Analysis failed: ${response.statusText}`);
@@ -171,7 +169,7 @@ const App = () => {
         ...prev,
         receiptProcessing: false,
         receiptAnalysis: result,
-        groceryCO2: result.totalEmissions?.toFixed(2) || "",
+        groceryCO2: result.total_emissions?.toFixed(2) || "",
         groceryPeriod: "monthly", // Assuming receipts are typically monthly
       }));
     } catch (error) {

@@ -1,3 +1,4 @@
+// Part 1: Imports and Initial State Setup
 import React, { useState, useEffect } from "react";
 import {
   Home,
@@ -10,6 +11,9 @@ import {
   Plus,
   Trash2,
   ShoppingCart,
+  Upload,
+  Camera,
+  FileText,
 } from "lucide-react";
 
 const App = () => {
@@ -37,6 +41,10 @@ const App = () => {
     grocerySpendPeriod: "monthly",
     dietType: "balanced",
     emissionFactor: 0.85,
+    receiptFile: null,
+    receiptAnalysis: null,
+    receiptProcessing: false,
+    receiptError: null,
   });
 
   const [results, setResults] = useState({
@@ -54,6 +62,7 @@ const App = () => {
 
   const [showComparison, setShowComparison] = useState(false);
 
+  // Constants and helper functions
   const getEnergyDemand = (year) => {
     if (year < 1960) return 240;
     if (year < 1980) return 210;
@@ -121,6 +130,76 @@ const App = () => {
     vantaan: { standard: 120, renewable: 0, nuclear: 12.5, nuclearMix: 30 },
     tampere: { standard: 205, renewable: 0, nuclear: 12.5, nuclearMix: 35 },
     other: { standard: 234, renewable: 0, nuclear: 80, nuclearMix: 120 },
+  };
+
+  // Part 2: Event Handlers and Receipt Analysis Functions
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Receipt analysis functions
+  const handleReceiptUpload = async (file) => {
+    if (!file) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      receiptFile: file,
+      receiptProcessing: true,
+      receiptError: null,
+      receiptAnalysis: null,
+    }));
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("receipt", file);
+
+      const response = await fetch(
+        "https://ecoreceiptbackend-production.up.railway.app/api/analyze-receipt",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Analysis failed: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      setFormData((prev) => ({
+        ...prev,
+        receiptProcessing: false,
+        receiptAnalysis: result,
+        groceryCO2: result.totalEmissions?.toFixed(2) || "",
+        groceryPeriod: "monthly", // Assuming receipts are typically monthly
+      }));
+    } catch (error) {
+      console.error("Receipt analysis error:", error);
+      setFormData((prev) => ({
+        ...prev,
+        receiptProcessing: false,
+        receiptError: error.message || "Failed to analyze receipt",
+      }));
+    }
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      handleReceiptUpload(file);
+    }
+  };
+
+  const resetReceiptAnalysis = () => {
+    setFormData((prev) => ({
+      ...prev,
+      receiptFile: null,
+      receiptAnalysis: null,
+      receiptProcessing: false,
+      receiptError: null,
+      groceryCO2: "",
+    }));
   };
 
   useEffect(() => {
@@ -220,6 +299,10 @@ const App = () => {
       const yearlySpending =
         formData.grocerySpendPeriod === "monthly" ? spending * 12 : spending;
       groceryEmissions = yearlySpending * factor;
+    } else if (formData.groceryMethod === "receipt" && formData.groceryCO2) {
+      const co2Value = parseFloat(formData.groceryCO2);
+      groceryEmissions =
+        formData.groceryPeriod === "monthly" ? co2Value * 12 : co2Value;
     }
 
     const totalEmissions =
@@ -287,10 +370,7 @@ const App = () => {
     });
   };
 
-  const handleInputChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
+  // Part 3: Vehicle Management and UI Helper Functions
   const addVehicle = () => {
     const newVehicle = {
       id: Date.now(),
@@ -892,6 +972,27 @@ const App = () => {
                       </div>
                     </div>
                   </label>
+
+                  <label className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-white">
+                    <input
+                      type="radio"
+                      name="groceryMethod"
+                      value="receipt"
+                      checked={formData.groceryMethod === "receipt"}
+                      onChange={(e) =>
+                        handleInputChange("groceryMethod", e.target.value)
+                      }
+                      className="mr-3"
+                    />
+                    <div>
+                      <div className="font-medium">
+                        Finnish Receipt Analysis
+                      </div>
+                      <div className="text-xs text-gray-600">
+                        Upload receipt for carbon footprint tracking
+                      </div>
+                    </div>
+                  </label>
                 </div>
 
                 {formData.groceryMethod === "loyalty" && (
@@ -928,6 +1029,198 @@ const App = () => {
                           <option value="annual">Annual</option>
                         </select>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {formData.groceryMethod === "receipt" && (
+                  <div className="bg-white p-4 rounded-lg border">
+                    <div className="space-y-4">
+                      {!formData.receiptAnalysis &&
+                        !formData.receiptProcessing && (
+                          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <input
+                              type="file"
+                              id="receipt-upload"
+                              accept="image/*,.pdf"
+                              onChange={handleFileChange}
+                              className="hidden"
+                            />
+                            <label
+                              htmlFor="receipt-upload"
+                              className="cursor-pointer flex flex-col items-center space-y-2 hover:text-blue-600"
+                            >
+                              <Upload size={32} className="text-gray-400" />
+                              <div className="font-medium">Upload Receipt</div>
+                              <div className="text-sm text-gray-500">
+                                Support: JPG, PNG, PDF • Finnish stores
+                                (K-Market, S-Market, etc.)
+                              </div>
+                            </label>
+                          </div>
+                        )}
+
+                      {formData.receiptProcessing && (
+                        <div className="bg-blue-50 p-4 rounded-lg text-center">
+                          <div className="animate-spin w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-2"></div>
+                          <div className="font-medium text-blue-800">
+                            Analyzing Receipt...
+                          </div>
+                          <div className="text-sm text-blue-600">
+                            Reading items and calculating emissions
+                          </div>
+                        </div>
+                      )}
+
+                      {formData.receiptError && (
+                        <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="font-medium text-red-800">
+                                Analysis Failed
+                              </div>
+                              <div className="text-sm text-red-600">
+                                {formData.receiptError}
+                              </div>
+                            </div>
+                            <button
+                              onClick={resetReceiptAnalysis}
+                              className="text-red-600 hover:text-red-800 text-sm underline"
+                            >
+                              Try Again
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {formData.receiptAnalysis && (
+                        <div className="space-y-4">
+                          <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="font-medium text-green-800">
+                                Receipt Analyzed Successfully
+                              </div>
+                              <button
+                                onClick={resetReceiptAnalysis}
+                                className="text-green-600 hover:text-green-800 text-sm underline"
+                              >
+                                Upload New
+                              </button>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div>
+                                <div className="font-medium">
+                                  Total Emissions
+                                </div>
+                                <div className="text-lg text-green-700">
+                                  {formData.receiptAnalysis.totalEmissions?.toFixed(
+                                    2
+                                  ) || "0"}{" "}
+                                  kg CO₂
+                                </div>
+                              </div>
+                              <div>
+                                <div className="font-medium">Items Found</div>
+                                <div className="text-lg text-green-700">
+                                  {formData.receiptAnalysis.itemCount || 0}{" "}
+                                  items
+                                </div>
+                              </div>
+                            </div>
+
+                            {formData.receiptAnalysis.categories && (
+                              <div className="mt-4">
+                                <div className="font-medium text-gray-700 mb-2">
+                                  Emission Breakdown
+                                </div>
+                                <div className="grid grid-cols-2 gap-2 text-xs">
+                                  {Object.entries(
+                                    formData.receiptAnalysis.categories
+                                  ).map(([category, data]) => (
+                                    <div
+                                      key={category}
+                                      className="bg-white p-2 rounded border"
+                                    >
+                                      <div className="font-medium capitalize">
+                                        {category.replace(/([A-Z])/g, " $1")}
+                                      </div>
+                                      <div className="text-green-600">
+                                        {data.emissions?.toFixed(2) || "0"} kg
+                                        CO₂
+                                      </div>
+                                      <div className="text-gray-500">
+                                        {data.items || 0} items
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {formData.receiptAnalysis.suggestions &&
+                              formData.receiptAnalysis.suggestions.length >
+                                0 && (
+                                <div className="mt-4">
+                                  <div className="font-medium text-gray-700 mb-2">
+                                    Improvement Suggestions
+                                  </div>
+                                  <div className="space-y-1">
+                                    {formData.receiptAnalysis.suggestions
+                                      .slice(0, 3)
+                                      .map((suggestion, index) => (
+                                        <div
+                                          key={index}
+                                          className="text-xs bg-yellow-50 p-2 rounded border-l-2 border-yellow-400"
+                                        >
+                                          {suggestion}
+                                        </div>
+                                      ))}
+                                  </div>
+                                </div>
+                              )}
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Period
+                              </label>
+                              <select
+                                value={formData.groceryPeriod}
+                                onChange={(e) =>
+                                  handleInputChange(
+                                    "groceryPeriod",
+                                    e.target.value
+                                  )
+                                }
+                                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                              >
+                                <option value="monthly">Monthly</option>
+                                <option value="annual">Annual</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                CO₂ (kg) - Editable
+                              </label>
+                              <input
+                                type="number"
+                                step="0.1"
+                                value={formData.groceryCO2}
+                                onChange={(e) =>
+                                  handleInputChange(
+                                    "groceryCO2",
+                                    e.target.value
+                                  )
+                                }
+                                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                                placeholder="From receipt analysis"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -1268,8 +1561,8 @@ const App = () => {
                   usage. Electric vehicles are cleanest.
                 </p>
                 <p>
-                  <strong>Groceries:</strong> From loyalty card data or spending
-                  × emission factor.
+                  <strong>Groceries:</strong> From loyalty card data, spending ×
+                  emission factor, or receipt analysis.
                 </p>
                 <p>
                   <strong>Score:</strong> 100 = zero emissions, 60 = Finnish
@@ -1283,4 +1576,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;

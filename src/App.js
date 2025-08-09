@@ -533,10 +533,7 @@ const App = () => {
             <Home className="w-5 h-5 mr-2" />
             Back to Home
           </button>
-          <div className="flex items-center">
-            <Leaf className="w-8 h-8 text-green-600 mr-2" />
-            <span className="text-xl font-bold text-gray-800">EcoReceipt Calculator</span>
-          </div>
+         
         </nav>
       {/* Copyright Notice */}
       <div className="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 const App = () => {
+  const [currentPage, setCurrentPage] = useState("home");
   const [formData, setFormData] = useState({
     houseType: "apartment",
     builtArea: 80,
@@ -511,8 +512,186 @@ const App = () => {
       </div>
     );
   };
+  
+    // Homepage Component
+  const HomePage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+      <div className="max-w-6xl mx-auto p-4">
+        {/* Navigation */}
+        <nav className="flex justify-between items-center mb-8 py-4">
+          <div className="flex items-center">
+            <Leaf className="w-8 h-8 text-green-600 mr-2" />
+            <span className="text-xl font-bold text-gray-800">EcoReceipt</span>
+          </div>
+          <button
+            onClick={() => window.open("https://netzerokoti.com/", "_blank")}
+            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
+            Go to NetZeroKoti
+          </button>
+        </nav>
 
-  return (
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <div className="flex justify-center items-center mb-6">
+            <Leaf className="w-20 h-20 text-green-600 mr-4" />
+            <h1 className="text-5xl font-bold text-gray-800">
+              EcoReceipt
+            </h1>
+          </div>
+          <h2 className="text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Transform your grocery receipts into climate insights with AI-powered carbon footprint analysis
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => setCurrentPage("calculator")}
+              className="flex items-center justify-center px-8 py-4 bg-green-600 text-white text-lg rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <Camera className="w-6 h-6 mr-2" />
+              Scan Your Receipt
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </button>
+            <button
+              onClick={() => setCurrentPage("calculator")}
+              className="flex items-center justify-center px-8 py-4 bg-blue-600 text-white text-lg rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <BarChart className="w-6 h-6 mr-2" />
+              Try Demo
+            </button>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+            <Smartphone className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              Instant Scanning
+            </h3>
+            <p className="text-gray-600">
+              Simply take a photo or upload your Finnish grocery receipt. Our OCR technology reads it instantly.
+            </p>
+          </div>
+          
+          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+            <Brain className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              AI-Powered Analysis
+            </h3>
+            <p className="text-gray-600">
+              Advanced AI categorizes your items and calculates precise CO₂ emissions using Finnish food data.
+            </p>
+          </div>
+          
+          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+            <Globe className="w-16 h-16 text-green-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              Actionable Insights
+            </h3>
+            <p className="text-gray-600">
+              Get personalized suggestions to reduce your carbon footprint and make more sustainable choices.
+            </p>
+          </div>
+        </div>
+
+        {/* How It Works */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+            How It Works
+          </h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Camera className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-2">1. Upload</h3>
+              <p className="text-gray-600 text-sm">
+                Take a photo or upload your grocery receipt
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Brain className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-2">2. Analyze</h3>
+              <p className="text-gray-600 text-sm">
+                AI reads and categorizes your grocery items
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BarChart className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-2">3. Calculate</h3>
+              <p className="text-gray-600 text-sm">
+                Get precise CO₂ emissions for your purchases
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Leaf className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-2">4. Improve</h3>
+              <p className="text-gray-600 text-sm">
+                Receive personalized sustainability tips
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Sample Results Preview */}
+        <div className="bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl shadow-lg p-8 mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">See Your Impact</h2>
+            <p className="text-xl opacity-90">
+              Example: Weekly grocery footprint analysis
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center">
+              <div className="text-4xl font-bold mb-2">8.7 kg</div>
+              <p className="opacity-90">CO₂ Emissions</p>
+            </div>
+            
+            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center">
+              <Car className="w-8 h-8 mx-auto mb-2" />
+              <div className="text-2xl font-bold mb-2">72 km</div>
+              <p className="opacity-90">Driving Equivalent</p>
+            </div>
+            
+            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center">
+              <TreePine className="w-8 h-8 mx-auto mb-2" />
+              <div className="text-2xl font-bold mb-2">14 months</div>
+              <p className="opacity-90">Tree Absorption</p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center bg-white rounded-xl shadow-lg p-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            Ready to Track Your Food Footprint?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Start making more sustainable grocery choices today
+          </p>
+          <button
+            onClick={() => setCurrentPage("calculator")}
+            className="px-12 py-4 bg-green-600 text-white text-xl rounded-lg hover:bg-green-700 transition-colors"
+          >
+            Get Started Now
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Calculator Page Component  
+  const CalculatorPage = () => (
     <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
       {/* Copyright Notice */}
       <div className="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
@@ -1620,6 +1799,13 @@ const App = () => {
           </div>
         </div>
       </div>
+    </div>
+  );
+  
+  // Main App Component
+  return (
+    <div>
+      {currentPage === "home" ? <HomePage /> : <CalculatorPage />}
     </div>
   );
 };

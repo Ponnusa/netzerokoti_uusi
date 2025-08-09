@@ -539,6 +539,15 @@ const App = () => {
         </div>
       </div>
 
+                  <div className="mb-2">
+        <button
+            onClick={() => window.open("https://netzerokoti.com/", "_blank")}
+            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
+            Go to NetZeroKoti
+          </button> 
+          </div>
+
       <div className="bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">

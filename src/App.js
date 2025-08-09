@@ -154,7 +154,7 @@ const App = () => {
       formDataToSend.append("receipt", file);
 
       const response = await fetch(
-        "https://ecoreceiptbackend-production.up.railway.app/api/analyze-receipt",
+        "https://ecoreceiptbackend-production.up.railway.app/api/process-receipt-ai",
         {
           method: "POST",
           body: formDataToSend,

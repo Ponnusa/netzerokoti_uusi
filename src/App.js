@@ -1650,9 +1650,9 @@ const App = () => {
                 <Home className="w-8 h-8 text-green-600 mr-3" />
                 <span className="text-2xl font-bold text-gray-900">NetZeroKoti</span>
               </div>
-              <button onClick={() => setCurrentPage("calculator")} 
+              <button onClick={() => window.open("https://netzerokoti.com/", "_blank")}
 				className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">			  
-                Start Calculator
+                Visit Our Main Site
               </button>
             </div>
           </div>

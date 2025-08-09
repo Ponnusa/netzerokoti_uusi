@@ -13,11 +13,18 @@ import {
   ShoppingCart,
   Upload,
   Camera,
-  FileText,
+  Calculator,
+  Target,
+  GraduationCap,
+  Thermometer,
+  ArrowRight,
+  Leaf,
+  CheckCircle,
+  Building2,
+  TrendingDown,
 } from "lucide-react";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("home");
   const [formData, setFormData] = useState({
     houseType: "apartment",
     builtArea: 80,
@@ -50,6 +57,7 @@ const App = () => {
     receiptAnalysisPeriod: "monthly",
   });
 
+  const [currentPage, setCurrentPage] = useState("home");
   const [results, setResults] = useState({
     totalEmissions: 0,
     heatingEmissions: 0,
@@ -512,187 +520,24 @@ const App = () => {
       </div>
     );
   };
-  
-    // Homepage Component
-  const HomePage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
-      <div className="max-w-6xl mx-auto p-4">
-        {/* Navigation */}
-        <nav className="flex justify-between items-center mb-8 py-4">
-          <div className="flex items-center">
-            <Leaf className="w-8 h-8 text-green-600 mr-2" />
-            <span className="text-xl font-bold text-gray-800">EcoReceipt</span>
-          </div>
-          <button
-            onClick={() => window.open("https://netzerokoti.com/", "_blank")}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-          >
-            Go to NetZeroKoti
-          </button>
-        </nav>
-
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center items-center mb-6">
-            <Leaf className="w-20 h-20 text-green-600 mr-4" />
-            <h1 className="text-5xl font-bold text-gray-800">
-              EcoReceipt
-            </h1>
-          </div>
-          <h2 className="text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Transform your grocery receipts into climate insights with AI-powered carbon footprint analysis
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => setCurrentPage("calculator")}
-              className="flex items-center justify-center px-8 py-4 bg-green-600 text-white text-lg rounded-lg hover:bg-green-700 transition-colors"
-            >
-              <Camera className="w-6 h-6 mr-2" />
-              Scan Your Receipt
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
-            <button
-              onClick={() => setCurrentPage("calculator")}
-              className="flex items-center justify-center px-8 py-4 bg-blue-600 text-white text-lg rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <BarChart className="w-6 h-6 mr-2" />
-              Try Demo
-            </button>
-          </div>
-        </div>
-
-        {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <Smartphone className="w-16 h-16 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">
-              Instant Scanning
-            </h3>
-            <p className="text-gray-600">
-              Simply take a photo or upload your Finnish grocery receipt. Our OCR technology reads it instantly.
-            </p>
-          </div>
-          
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <Brain className="w-16 h-16 text-purple-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">
-              AI-Powered Analysis
-            </h3>
-            <p className="text-gray-600">
-              Advanced AI categorizes your items and calculates precise CO₂ emissions using Finnish food data.
-            </p>
-          </div>
-          
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <Globe className="w-16 h-16 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">
-              Actionable Insights
-            </h3>
-            <p className="text-gray-600">
-              Get personalized suggestions to reduce your carbon footprint and make more sustainable choices.
-            </p>
-          </div>
-        </div>
-
-        {/* How It Works */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
-            How It Works
-          </h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Camera className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">1. Upload</h3>
-              <p className="text-gray-600 text-sm">
-                Take a photo or upload your grocery receipt
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Brain className="w-8 h-8 text-blue-600" />
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">2. Analyze</h3>
-              <p className="text-gray-600 text-sm">
-                AI reads and categorizes your grocery items
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BarChart className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">3. Calculate</h3>
-              <p className="text-gray-600 text-sm">
-                Get precise CO₂ emissions for your purchases
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Leaf className="w-8 h-8 text-orange-600" />
-              </div>
-              <h3 className="font-semibold text-gray-800 mb-2">4. Improve</h3>
-              <p className="text-gray-600 text-sm">
-                Receive personalized sustainability tips
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Sample Results Preview */}
-        <div className="bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl shadow-lg p-8 mb-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">See Your Impact</h2>
-            <p className="text-xl opacity-90">
-              Example: Weekly grocery footprint analysis
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center">
-              <div className="text-4xl font-bold mb-2">8.7 kg</div>
-              <p className="opacity-90">CO₂ Emissions</p>
-            </div>
-            
-            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center">
-              <Car className="w-8 h-8 mx-auto mb-2" />
-              <div className="text-2xl font-bold mb-2">72 km</div>
-              <p className="opacity-90">Driving Equivalent</p>
-            </div>
-            
-            <div className="bg-white bg-opacity-20 rounded-lg p-6 text-center">
-              <TreePine className="w-8 h-8 mx-auto mb-2" />
-              <div className="text-2xl font-bold mb-2">14 months</div>
-              <p className="opacity-90">Tree Absorption</p>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center bg-white rounded-xl shadow-lg p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Ready to Track Your Food Footprint?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Start making more sustainable grocery choices today
-          </p>
-          <button
-            onClick={() => setCurrentPage("calculator")}
-            className="px-12 py-4 bg-green-600 text-white text-xl rounded-lg hover:bg-green-700 transition-colors"
-          >
-            Get Started Now
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 
   // Calculator Page Component  
   const CalculatorPage = () => (
     <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+	{/* Navigation */}
+        <nav className="flex justify-between items-center mb-8 py-4">
+          <button
+            onClick={() => setCurrentPage("home")}
+            className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+          >
+            <Home className="w-5 h-5 mr-2" />
+            Back to Home
+          </button>
+          <div className="flex items-center">
+            <Leaf className="w-8 h-8 text-green-600 mr-2" />
+            <span className="text-xl font-bold text-gray-800">EcoReceipt Calculator</span>
+          </div>
+        </nav>
       {/* Copyright Notice */}
       <div className="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
         <div className="flex items-start">
@@ -717,15 +562,6 @@ const App = () => {
           </div>
         </div>
       </div>
-
-                  <div className="mb-2">
-        <button
-            onClick={() => window.open("https://netzerokoti.com/", "_blank")}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-          >
-            Go to NetZeroKoti
-          </button> 
-          </div>
 
       <div className="bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
@@ -1801,11 +1637,301 @@ const App = () => {
       </div>
     </div>
   );
+
+  // Homepage Component
+  const NetZeroKotiHomepage = () => {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+        {/* Navigation */}
+        <nav className="bg-white shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <div className="flex items-center">
+                <Home className="w-8 h-8 text-green-600 mr-3" />
+                <span className="text-2xl font-bold text-gray-900">NetZeroKoti</span>
+              </div>
+              <button onClick={() => setCurrentPage("calculator")} 
+				className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">			  
+                Start Calculator
+              </button>
+            </div>
+          </div>
+        </nav>
   
+        {/* Hero Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-16">
+            <div className="flex justify-center items-center mb-6">
+              <Home className="w-20 h-20 text-green-600 mr-4" />
+              <h1 className="text-6xl font-bold text-gray-900">NetZeroKoti</h1>
+            </div>
+            <h2 className="text-3xl text-gray-700 mb-6 font-bold">
+              Advanced Finnish Household CO₂ Emissions Calculator
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Take control of your carbon footprint with Finland's most comprehensive household emissions calculator. 
+              Get precise, municipality-specific analysis and actionable insights to reduce your environmental impact.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button onClick={() => setCurrentPage("calculator")}
+			  className="flex items-center justify-center px-10 py-4 bg-green-600 text-white text-xl rounded-lg hover:bg-green-700 transition-colors font-bold shadow-lg">                               
+				<Calculator className="w-6 h-6 mr-3" />
+                Start Your Analysis
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </button>              
+            </div>
+          </div>
+  
+          {/* Key Features */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Calculator className="w-10 h-10 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                🧮 Comprehensive Analysis
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Calculate combined heating and electricity emissions with Finnish-specific data and detailed municipality factors for accurate results.
+              </p>
+            </div>
+            
+            <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Target className="w-10 h-10 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                🎯 Local Accuracy
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Municipality-specific district heating factors for Helsinki, Espoo, Vantaa, Tampere, and more Finnish cities for precise calculations.
+              </p>
+            </div>
+            
+            <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow">
+              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-10 h-10 text-purple-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                📊 Actionable Insights
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Compare different energy systems, providers, and receive specific recommendations for emission reduction tailored to your home.
+              </p>
+            </div>
+            
+            <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow">
+              <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <GraduationCap className="w-10 h-10 text-orange-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                🎓 Educational Tool
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Learn about Finnish energy systems and understand the real impact of your choices on carbon emissions and climate goals.
+              </p>
+            </div>
+          </div>
+  
+          {/* Why It Matters Section */}
+          <div className="bg-white rounded-3xl shadow-2xl p-10 mb-20">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
+              Why NetZeroKoti Matters for Finnish Households
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    <span className="font-bold text-xl">Home heating accounts for 60-70% of household energy use</span> in Finland's climate
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    <span className="font-bold text-xl">District heating varies dramatically by municipality</span> - from 15g to 300g CO₂/kWh
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    <span className="font-bold text-xl">Finnish households average 4.2 tons CO₂e annually</span> from home energy alone
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    <span className="font-bold text-xl">Smart energy choices can reduce emissions by 40-60%</span> with proper planning
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    <span className="font-bold text-xl">Government net-zero targets require 80% emission cuts</span> by 2050
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="w-8 h-8 text-green-600 mt-1" />
+                </div>
+                <div>
+                  <p className="text-gray-700 leading-relaxed text-lg">
+                    <span className="font-bold text-xl">Energy certificates don't show actual carbon footprint</span> - our tool does
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          {/* Stats Section */}
+          <div className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white rounded-3xl shadow-2xl p-12 mb-20">
+            <div className="grid md:grid-cols-4 gap-8 text-center">
+              <div className="transform hover:scale-105 transition-transform">
+                <div className="text-6xl font-bold mb-4">±5%</div>
+                <p className="text-xl font-semibold opacity-90">Calculation Accuracy</p>
+              </div>
+              <div className="transform hover:scale-105 transition-transform">
+                <div className="text-6xl font-bold mb-4">4.2t</div>
+                <p className="text-xl font-semibold opacity-90">Finnish Average</p>
+              </div>
+              <div className="transform hover:scale-105 transition-transform">
+                <div className="text-6xl font-bold mb-4">A-G</div>
+                <p className="text-xl font-semibold opacity-90">Rating Scale</p>
+              </div>
+              <div className="transform hover:scale-105 transition-transform">
+                <div className="text-6xl font-bold mb-4">4+</div>
+                <p className="text-xl font-semibold opacity-90">Municipalities</p>
+              </div>
+            </div>
+          </div>
+  
+          {/* How It Works */}
+          <div className="bg-white rounded-3xl shadow-2xl p-10 mb-20">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
+              How NetZeroKoti Works
+            </h2>
+            
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="text-center group">
+                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors">
+                  <Building2 className="w-10 h-10 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl">1. Home Details</h3>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  Enter your home size, type, and location for accurate baseline calculations
+                </p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors">
+                  <Thermometer className="w-10 h-10 text-green-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl">2. Energy Systems</h3>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  Select your heating and electricity sources with municipality-specific factors
+                </p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-colors">
+                  <BarChart3 className="w-10 h-10 text-purple-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl">3. Analysis</h3>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  Get detailed emissions breakdown and comparison with Finnish averages
+                </p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-orange-200 transition-colors">
+                  <TrendingDown className="w-10 h-10 text-orange-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl">4. Recommendations</h3>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  Receive personalized action plan to reduce your household emissions
+                </p>
+              </div>
+            </div>
+          </div>
+  
+          {/* CTA Section */}
+          <div className="text-center bg-gradient-to-br from-green-50 to-blue-50 rounded-3xl shadow-2xl p-16 border-2 border-green-200">
+            <div className="flex justify-center items-center mb-8">
+              <Leaf className="w-16 h-16 text-green-600 mr-4" />
+              <h2 className="text-5xl font-bold text-gray-900">
+                Ready to Achieve Net Zero?
+              </h2>
+            </div>
+            <p className="text-2xl text-gray-600 mb-12 max-w-4xl mx-auto font-medium">
+              Join thousands of Finnish households taking control of their carbon footprint. 
+              Start your comprehensive emissions analysis today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button onClick={() => setCurrentPage("calculator")} className="px-16 py-6 bg-green-600 text-white text-2xl rounded-xl hover:bg-green-700 transition-colors font-bold shadow-xl hover:shadow-2xl transform hover:scale-105">
+                Calculate My Emissions
+              </button>
+              <button onClick={() => window.open("https://netzerokoti.com/", "_blank")}
+			  className="px-16 py-6 bg-blue-600 text-white text-2xl rounded-xl hover:bg-blue-700 transition-colors font-bold shadow-xl hover:shadow-2xl transform hover:scale-105">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white mt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="text-center">
+              <div className="flex justify-center items-center mb-6">
+                <Home className="w-10 h-10 text-green-400 mr-4" />
+                <span className="text-3xl font-bold">NetZeroKoti</span>
+              </div>
+              <p className="text-gray-300 mb-8 text-xl max-w-2xl mx-auto">
+                Empowering Finnish households to achieve net-zero emissions through data-driven insights and actionable recommendations.
+              </p>
+              <div className="flex justify-center space-x-8 text-lg text-gray-400">
+                <a href="https://netzerokoti.com/" className="hover:text-white transition-colors font-medium">Contact</a>
+                <a href="https://netzerokoti.com/" className="hover:text-white transition-colors font-medium">About</a>
+              </div>
+              <div className="mt-8 pt-8 border-t border-gray-700">
+                <p className="text-gray-500">© 2025 NetZeroKoti. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    );
+  };
+
   // Main App Component
   return (
     <div>
-      {currentPage === "home" ? <HomePage /> : <CalculatorPage />}
+      {currentPage === "home" ? <NetZeroKotiHomepage /> : <CalculatorPage />}
     </div>
   );
 };

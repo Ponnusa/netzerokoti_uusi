@@ -1220,7 +1220,7 @@ const App = () => {
 					    </div>
 					    <div className="ml-3 text-sm">
 					      <label htmlFor="privacy-consent" className="font-medium text-gray-900 cursor-pointer">
-					        <span className="text-blue-800 font-semibold">🔒 Privacy Note:</span> By uploading your receipt, you agree that EcoReceipt will process the file using AI to classify items and calculate a CO₂ score. We <strong>do not</strong> store your image/PDF — only the results (item classifications, store name, and score) are saved.
+					        <span className="text-blue-800 font-semibold">🔒 Privacy Note:</span> By uploading your receipt, you agree that NetZeroKoti will process the file using AI to classify items and calculate a CO₂ score. We <strong>do not</strong> store your image/PDF — only the results (item classifications, store name, and score) are saved.
 					      </label>
 					      <p className="mt-2 text-gray-700">
 					        <strong>I agree and consent to the processing of my receipt as described above.</strong>
@@ -1997,7 +1997,7 @@ const PrivacyPolicyPage = () => (
         </button>
         <div className="flex items-center">
           <Leaf className="w-8 h-8 text-green-600 mr-2" />
-          <span className="text-xl font-bold text-gray-800">EcoReceipt Privacy Policy</span>
+          <span className="text-xl font-bold text-gray-800">NetZeroKoti Privacy Policy</span>
         </div>
       </nav>
 
@@ -2010,7 +2010,7 @@ const PrivacyPolicyPage = () => (
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-800 mb-2">Privacy Policy</h1>
-          <h2 className="text-2xl font-semibold text-blue-600">EcoReceipt</h2>
+          <h2 className="text-2xl font-semibold text-blue-600">NetZeroKoti</h2>
           <p className="text-gray-600 mt-4">
             <strong>Effective Date:</strong> January 15, 2025
           </p>
@@ -2019,7 +2019,7 @@ const PrivacyPolicyPage = () => (
         <div className="prose prose-lg max-w-none text-gray-700">
           <div className="mb-8">
             <p className="text-lg leading-relaxed">
-              At <strong>EcoReceipt</strong>, we respect your privacy and are committed to protecting your personal data. 
+              At <strong>NetZeroKoti</strong>, we respect your privacy and are committed to protecting your personal data. 
               This policy explains how we handle the receipts you upload to our service.
             </p>
           </div>
@@ -2029,7 +2029,7 @@ const PrivacyPolicyPage = () => (
               <FileText className="w-6 h-6 text-green-600 mr-2" />
               What Data We Process
             </h3>
-            <p className="mb-4">When you upload a receipt (photo or PDF) to EcoReceipt:</p>
+            <p className="mb-4">When you upload a receipt (photo or PDF) to NetZeroKoti:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>We process the file to extract and classify each item for CO₂ scoring.</li>
               <li>We store only:
@@ -2050,7 +2050,7 @@ const PrivacyPolicyPage = () => (
               AI Processing Disclosure
             </h3>
             <p>
-              EcoReceipt uses artificial intelligence (AI) to automatically recognize and classify items on your receipt 
+              NetZeroKoti uses artificial intelligence (AI) to automatically recognize and classify items on your receipt 
               in order to calculate the CO₂ score. The AI processing is fully automated and operates only on the data 
               you choose to provide.
             </p>

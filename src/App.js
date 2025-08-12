@@ -33,7 +33,8 @@ import {
   GraduationCap,
   Thermometer,
   Building2,
-  TrendingDown
+  TrendingDown,
+  Info
 } from "lucide-react";
 
 const App = () => {
@@ -1234,7 +1235,7 @@ const App = () => {
 					  </div>
 					)}
 				  </div>
-			        
+					  </div>  
 
                     {/* Upload Section */}
                     <div className="flex gap-2">

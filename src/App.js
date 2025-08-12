@@ -1202,7 +1202,7 @@ const App = () => {
                       <div className="text-xs text-gray-500 mt-1">
                         Enter your Railway API URL for receipt analysis
                       </div>
-                    </div*/>
+                    </div>
 
 					{/* Privacy Consent Section */}			        
 				  <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">

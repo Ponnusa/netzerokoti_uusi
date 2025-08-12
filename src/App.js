@@ -68,7 +68,7 @@ const App = () => {
     receiptTotalEmissions: 0,
     receiptAnalysisPeriod: "monthly",
   });
-
+  const [privacyConsent, setPrivacyConsent] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
   const [results, setResults] = useState({
     totalEmissions: 0,
@@ -535,7 +535,7 @@ const App = () => {
 
   // Calculator Page Component  
   const CalculatorPage = () => (
-  const [privacyConsent, setPrivacyConsent] = useState(false);
+  
     <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
 	{/* Navigation */}
         <nav className="flex justify-between items-center mb-8 py-4">

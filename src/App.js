@@ -1332,11 +1332,10 @@ const App = () => {
                     <div className="bg-blue-50 p-3 rounded-lg">
                       <div className="text-sm text-blue-800">
                         <div className="font-medium mb-1">How it works:</div>
-                        <div className="text-xs space-y-1">
-                          <div>1. Configure your Railway API URL</div>
-                          <div>2. Upload receipt images or PDFs</div>
-                          <div>3. AI analyzes and calculates CO₂ emissions</div>
-                          <div>4. Click "Import Data" to use in calculations</div>
+                        <div className="text-xs space-y-1">                          
+                          <div>1. Upload receipt images or PDFs</div>
+                          <div>2. AI analyzes and calculates CO₂ emissions</div>
+                          <div>3. Click "Import Data" to use in calculations</div>
                         </div>
                       </div>
                     </div>

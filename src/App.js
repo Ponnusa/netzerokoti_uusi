@@ -1188,7 +1188,7 @@ const App = () => {
                 {formData.groceryMethod === "receipt-analysis" && (
                   <div className="bg-white p-4 rounded-lg border space-y-4">
                     {/* API Configuration */}
-					</*div>
+					<div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Railway API URL
                       </label>
@@ -1202,7 +1202,7 @@ const App = () => {
                       <div className="text-xs text-gray-500 mt-1">
                         Enter your Railway API URL for receipt analysis
                       </div>
-                    </div>
+                    </>
 
 					{/* Privacy Consent Section */}			        
 				  <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">

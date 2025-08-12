@@ -1912,6 +1912,12 @@ const App = () => {
                 Empowering Finnish households to achieve net-zero emissions through data-driven insights and actionable recommendations.
               </p>
               <div className="flex justify-center space-x-8 text-lg text-gray-400">
+				<button 
+	                onClick={() => setCurrentPage("privacy")}
+	                className="hover:text-white transition-colors font-medium bg-transparent border-none text-lg cursor-pointer"
+	              >
+	                Privacy Policy
+	            </button>
                 <a href="https://netzerokoti.com/" className="hover:text-white transition-colors font-medium">Contact</a>
                 <a href="https://netzerokoti.com/" className="hover:text-white transition-colors font-medium">About</a>
               </div>
@@ -1925,10 +1931,169 @@ const App = () => {
     );
   };
 
+// Privacy Policy Page Component
+const PrivacyPolicyPage = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="max-w-4xl mx-auto p-4">
+      {/* Navigation */}
+      <nav className="flex justify-between items-center mb-8 py-4">
+        <button
+          onClick={() => setCurrentPage("home")}
+          className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+        >
+          <Home className="w-5 h-5 mr-2" />
+          Back to Home
+        </button>
+        <div className="flex items-center">
+          <Leaf className="w-8 h-8 text-green-600 mr-2" />
+          <span className="text-xl font-bold text-gray-800">EcoReceipt Privacy Policy</span>
+        </div>
+      </nav>
+
+      {/* Privacy Policy Content */}
+      <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="text-center mb-8">
+          <div className="flex justify-center items-center mb-4">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+              <Settings className="w-8 h-8 text-blue-600" />
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Privacy Policy</h1>
+          <h2 className="text-2xl font-semibold text-blue-600">EcoReceipt</h2>
+          <p className="text-gray-600 mt-4">
+            <strong>Effective Date:</strong> January 15, 2025
+          </p>
+        </div>
+
+        <div className="prose prose-lg max-w-none text-gray-700">
+          <div className="mb-8">
+            <p className="text-lg leading-relaxed">
+              At <strong>EcoReceipt</strong>, we respect your privacy and are committed to protecting your personal data. 
+              This policy explains how we handle the receipts you upload to our service.
+            </p>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+              <FileText className="w-6 h-6 text-green-600 mr-2" />
+              What Data We Process
+            </h3>
+            <p className="mb-4">When you upload a receipt (photo or PDF) to EcoReceipt:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>We process the file to extract and classify each item for CO₂ scoring.</li>
+              <li>We store only:
+                <ul className="list-disc pl-6 mt-2 space-y-1">
+                  <li>The classification result for each item.</li>
+                  <li>The calculated CO₂ score for the receipt (NetZero score).</li>
+                  <li>The store name from the receipt.</li>
+                </ul>
+              </li>
+              <li>We do <strong>not</strong> store the uploaded image or PDF — it is deleted immediately after processing.</li>
+              <li>We do <strong>not</strong> collect any other personal information from your receipt.</li>
+            </ul>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+              <Brain className="w-6 h-6 text-purple-600 mr-2" />
+              AI Processing Disclosure
+            </h3>
+            <p>
+              EcoReceipt uses artificial intelligence (AI) to automatically recognize and classify items on your receipt 
+              in order to calculate the CO₂ score. The AI processing is fully automated and operates only on the data 
+              you choose to provide.
+            </p>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+              <Target className="w-6 h-6 text-blue-600 mr-2" />
+              How We Use the Data
+            </h3>
+            <p className="mb-4">We use the processed data to:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Provide you with the CO₂ score of your purchases.</li>
+              <li>Improve our classification models and accuracy (using only anonymized data).</li>
+            </ul>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+              <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-2">
+                <CheckCircle className="w-4 h-4 text-white" />
+              </div>
+              Data Security
+            </h3>
+            <p>
+              We take reasonable technical and organizational measures to protect your data from unauthorized access, 
+              use, or disclosure.
+            </p>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+              <Globe className="w-6 h-6 text-indigo-600 mr-2" />
+              Your Rights under GDPR
+            </h3>
+            <p className="mb-4">You have the right to:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Request access to the data we store about you.</li>
+              <li>Request correction or deletion of your stored receipt data.</li>
+              <li>Withdraw your consent at any time.</li>
+            </ul>
+            <p className="mt-4">
+              To exercise your rights, contact us at: 
+              <a href="mailto:netzerokoti@gmail.com" className="text-blue-600 hover:text-blue-800 font-medium ml-1">
+                netzerokoti@gmail.com
+              </a>
+            </p>
+          </div>
+
+          <div className="bg-gray-50 rounded-lg p-6">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+              <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-2">
+                <span className="text-white text-xs font-bold">@</span>
+              </div>
+              Contact
+            </h3>
+            <p className="mb-4">If you have questions about this policy, you can reach us at:</p>
+            <div className="space-y-2">
+              <p>
+                <strong>Email:</strong> 
+                <a href="mailto:netzerokoti@gmail.com" className="text-blue-600 hover:text-blue-800 font-medium ml-1">
+                  netzerokoti@gmail.com
+                </a>
+              </p>
+              <p>
+                <strong>Website:</strong> 
+                <a href="https://netzerokoti.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 font-medium ml-1">
+                  https://netzerokoti.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Back to Home Button */}
+        <div className="text-center mt-8">
+          <button
+            onClick={() => setCurrentPage("home")}
+            className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
   // Main App Component
   return (
-    <div>
-      {currentPage === "home" ? <NetZeroKotiHomepage /> : <CalculatorPage />}
+    <div>      
+	  {currentPage === "home" && <NetZeroKotiHomepage />}
+      {currentPage === "calculator" && <CalculatorPage />}
+      {currentPage === "privacy" && <PrivacyPolicyPage />}
     </div>
   );
 };

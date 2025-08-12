@@ -33,8 +33,7 @@ import {
   GraduationCap,
   Thermometer,
   Building2,
-  TrendingDown,
-  Info
+  TrendingDown
 } from "lucide-react";
 
 const App = () => {
